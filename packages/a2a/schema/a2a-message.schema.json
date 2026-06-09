@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/dayour/scout-swe/a2a/a2a-message.schema.json",
+  "title": "A2A Message",
+  "type": "object",
+  "required": ["protocol", "messageId", "role", "parts", "createdAt"],
+  "properties": {
+    "protocol": { "const": "0.2" },
+    "messageId": { "type": "string" },
+    "role": { "enum": ["user", "agent", "system"] },
+    "taskId": { "type": "string" },
+    "contextId": { "type": "string" },
+    "from": { "type": "string" },
+    "to": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "parts": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["kind", "text"],
+            "properties": { "kind": { "const": "text" }, "text": { "type": "string" } },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["kind", "mimeType", "data"],
+            "properties": { "kind": { "const": "data" }, "mimeType": { "type": "string" }, "data": {} },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["kind", "name", "mimeType"],
+            "properties": {
+              "kind": { "const": "file" },
+              "name": { "type": "string" },
+              "mimeType": { "type": "string" },
+              "uri": { "type": "string" },
+              "bytesBase64": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@scout-swe/runtime",
+  "version": "0.1.0",
+  "description": "Scout SWE runtime: task/session execution, A2A transport, and scheduler.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "files": ["dist"],
+  "scripts": { "build": "tsc -b" },
+  "dependencies": { "@scout-swe/a2a": "0.1.0", "@scout-swe/sdk": "0.1.0" }
+}

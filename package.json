@@ -1,0 +1,33 @@
+{
+  "name": "scout-swe",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Scout SWE - software engineering framework and SDK for the DarbotLM Scout control plane and the Microsoft Scout fleet.",
+  "license": "MIT",
+  "author": "Daryl Yourk (@dayour)",
+  "repository": { "type": "git", "url": "https://github.com/dayour/scout-swe.git" },
+  "workspaces": [
+    "packages/*",
+    "docs"
+  ],
+  "engines": { "node": ">=20" },
+  "overrides": {
+    "webpack": "5.95.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean",
+    "typecheck": "tsc -b --pretty",
+    "lint": "tsc -b --pretty",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "docs:build": "npm -w docs run build",
+    "docs:start": "npm -w docs run start",
+    "automations": "node automations/run.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4"
+  }
+}

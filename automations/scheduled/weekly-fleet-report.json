@@ -1,0 +1,7 @@
+{
+  "id": "weekly-fleet-report",
+  "title": "Weekly Scout fleet report",
+  "schedule": "0 13 * * 1",
+  "prompt": "Summarize Scout fleet health, Frontier policy status, and pending tasks for the past week.",
+  "nodeId": null
+}

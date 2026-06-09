@@ -1,0 +1,46 @@
+<!--
+  Azure API Management - inbound policy for the Scout API.
+  Apply at the API scope. Sets the backend, CORS, rate limiting, and (optional)
+  JWT validation. Import apim/openapi/scout-api.yaml as the API definition first.
+-->
+<policies>
+  <inbound>
+    <base />
+    <cors allow-credentials="false">
+      <allowed-origins>
+        <origin>*</origin>
+      </allowed-origins>
+      <allowed-methods>
+        <method>GET</method>
+        <method>POST</method>
+        <method>OPTIONS</method>
+      </allowed-methods>
+      <allowed-headers>
+        <header>*</header>
+      </allowed-headers>
+    </cors>
+    <rate-limit-by-key calls="120" renewal-period="60"
+      counter-key="@(context.Request.IpAddress)" />
+    <!-- Optional: require a JWT from Entra ID. Configure openid-config and audience.
+    <validate-jwt header-name="Authorization" failed-validation-httpcode="401">
+      <openid-config url="https://login.microsoftonline.com/{tenant}/v2.0/.well-known/openid-configuration" />
+      <required-claims>
+        <claim name="aud"><value>{api-app-id}</value></claim>
+      </required-claims>
+    </validate-jwt>
+    -->
+    <set-backend-service base-url="{{scout-gateway-url}}" />
+  </inbound>
+  <backend>
+    <base />
+  </backend>
+  <outbound>
+    <base />
+    <set-header name="X-Scout-Gateway" exists-action="override">
+      <value>darbotlm</value>
+    </set-header>
+  </outbound>
+  <on-error>
+    <base />
+  </on-error>
+</policies>
