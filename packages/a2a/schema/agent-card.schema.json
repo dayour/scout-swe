@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/dayour/scout-swe/a2a/agent-card.schema.json",
+  "title": "Agent Card",
+  "type": "object",
+  "required": ["protocolVersion", "id", "name", "url", "version", "skills"],
+  "properties": {
+    "protocolVersion": { "const": "0.2" },
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "version": { "type": "string" },
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "streaming": { "type": "boolean" },
+        "pushNotifications": { "type": "boolean" },
+        "stateTransitionHistory": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "defaultInputModes": { "type": "array", "items": { "type": "string" } },
+    "defaultOutputModes": { "type": "array", "items": { "type": "string" } },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "inputModes": { "type": "array", "items": { "type": "string" } },
+          "outputModes": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

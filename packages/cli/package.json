@@ -1,0 +1,11 @@
+{
+  "name": "@scout-swe/cli",
+  "version": "0.1.0",
+  "description": "scout-swe command line over the Scout control plane.",
+  "license": "MIT",
+  "type": "module",
+  "bin": { "scout-swe": "dist/index.js" },
+  "files": ["dist"],
+  "scripts": { "build": "tsc -b" },
+  "dependencies": { "@scout-swe/sdk": "0.1.0" }
+}

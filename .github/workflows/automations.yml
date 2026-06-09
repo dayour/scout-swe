@@ -1,0 +1,19 @@
+name: automations
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run scheduled automations (dry-run in CI)
+        env:
+          SCOUT_DRY_RUN: "1"
+        run: node automations/run.mjs

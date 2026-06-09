@@ -1,0 +1,16 @@
+{
+  "name": "@scout-swe/a2a",
+  "version": "0.1.0",
+  "description": "Agent2Agent (A2A) protocol types and JSON Schemas for Scout SWE.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./schema/message": "./schema/a2a-message.schema.json",
+    "./schema/agent-card": "./schema/agent-card.schema.json"
+  },
+  "files": ["dist", "schema"],
+  "scripts": { "build": "tsc -b" }
+}

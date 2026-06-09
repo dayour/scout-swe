@@ -1,0 +1,31 @@
+<!--
+  Azure API Management - routing policy for Agent2Agent (A2A) and MCP traffic.
+  Routes /a2a/* to the A2A backend and /mcp/* to the MCP backend, leaving all
+  other paths on the Scout gateway. This is the base used by scout-swe; weave
+  extends it with swarm-aware, per-agent routing.
+-->
+<policies>
+  <inbound>
+    <base />
+    <choose>
+      <when condition="@(context.Request.Url.Path.StartsWith("/a2a"))">
+        <set-backend-service base-url="{{a2a-backend-url}}" />
+        <set-header name="X-Route" exists-action="override">
+          <value>a2a</value>
+        </set-header>
+      </when>
+      <when condition="@(context.Request.Url.Path.StartsWith("/mcp"))">
+        <set-backend-service base-url="{{mcp-backend-url}}" />
+        <set-header name="X-Route" exists-action="override">
+          <value>mcp</value>
+        </set-header>
+      </when>
+      <otherwise>
+        <set-backend-service base-url="{{scout-gateway-url}}" />
+      </otherwise>
+    </choose>
+  </inbound>
+  <backend><base /></backend>
+  <outbound><base /></outbound>
+  <on-error><base /></on-error>
+</policies>
