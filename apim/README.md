@@ -16,8 +16,11 @@ Define these APIM named values (or replace inline):
 | Name | Example |
 |------|---------|
 | `scout-gateway-url` | `https://scout-gateway.example.com` |
-| `a2a-backend-url` | `https://scout-gateway.example.com` |
-| `mcp-backend-url` | `https://scout-gateway.example.com` |
+| `a2a-backend-url` | `https://a2a-backend.example.com` |
+| `mcp-backend-url` | `https://mcp-backend.example.com` |
+
+Treat these as deployment configuration. Do not commit tenant-specific backend
+origins or credentials.
 
 ## Apply with the Azure CLI
 

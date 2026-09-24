@@ -29,7 +29,9 @@ export interface ScoutClientOptions {
  * gateway under `/scout`.
  *
  * @example
- * const scout = new ScoutClient({ baseUrl: "https://scout-gateway.example.com" });
+ * const gateway = process.env.SCOUT_GATEWAY;
+ * if (!gateway) throw new Error("SCOUT_GATEWAY is required");
+ * const scout = new ScoutClient({ baseUrl: gateway });
  * const health = await scout.health();
  * const catalog = await scout.catalog();
  */

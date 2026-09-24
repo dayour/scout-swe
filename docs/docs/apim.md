@@ -20,6 +20,8 @@ az apim api import \
 ```
 
 Named values: `scout-gateway-url`, `a2a-backend-url`, `mcp-backend-url`.
+Populate them with deployment-specific HTTPS origins, such as
+`https://scout-gateway.example.com`; do not commit tenant-specific values.
 
 > The orchestration repo, [weave](https://github.com/dayour/weave), extends this
 > with swarm-aware per-agent routing for A2A and MCP.

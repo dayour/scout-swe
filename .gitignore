@@ -8,6 +8,12 @@ coverage/
 .env.*
 !.env.example
 *.log
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+.npmrc
 .DS_Store
 Thumbs.db
 __pycache__/

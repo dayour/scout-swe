@@ -5,9 +5,10 @@ pip install ./python   # from the repo root, or: pip install scout-swe (once pub
 ```
 
 ```python
+import os
 from scout_swe import ScoutClient, ScoutPolicy
 
-with ScoutClient("https://scout-gateway.example.com") as scout:
+with ScoutClient(os.environ["SCOUT_GATEWAY"]) as scout:
     print(scout.health())
     for node in scout.nodes():
         print(node.id, node.platform, node.status)
@@ -16,3 +17,5 @@ with ScoutClient("https://scout-gateway.example.com") as scout:
     policy = ScoutPolicy(allowScoutFrontierAccess=True)
     print(scout.render_policy("linux", policy))
 ```
+
+Set `SCOUT_GATEWAY` to the deployment-specific control-plane origin.

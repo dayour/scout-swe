@@ -8,7 +8,7 @@ title: Getting started
 ## Prerequisites
 
 - Node.js 20+
-- A reachable Scout gateway (the DarbotLM gateway serving `/scout`, e.g. `https://scout-gateway.example.com`)
+- A reachable Scout gateway serving `/scout`, configured through `SCOUT_GATEWAY`
 
 ## Install & build
 
@@ -26,7 +26,10 @@ npm run docs:build # this site
 ```ts
 import { ScoutClient, defaultPolicy, renderPolicy } from "@scout-swe/sdk";
 
-const scout = new ScoutClient({ baseUrl: "https://scout-gateway.example.com" });
+const gateway = process.env.SCOUT_GATEWAY;
+if (!gateway) throw new Error("SCOUT_GATEWAY is required");
+
+const scout = new ScoutClient({ baseUrl: gateway });
 
 const health = await scout.health();
 const catalog = await scout.catalog();   // every DLMCP resource

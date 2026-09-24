@@ -38,7 +38,10 @@ npm run docs:build   # Docusaurus site
 ```ts
 import { ScoutClient, defaultPolicy, renderPolicy } from "@scout-swe/sdk";
 
-const scout = new ScoutClient({ baseUrl: "https://scout-gateway.example.com" });
+const gateway = process.env.SCOUT_GATEWAY;
+if (!gateway) throw new Error("SCOUT_GATEWAY is required");
+
+const scout = new ScoutClient({ baseUrl: gateway });
 console.log(await scout.health());
 console.log(await scout.catalog());            // every DLMCP resource
 console.log(renderPolicy(defaultPolicy(), "linux").path); // /etc/clawpilot/policy.json
@@ -47,6 +50,8 @@ console.log(renderPolicy(defaultPolicy(), "linux").path); // /etc/clawpilot/poli
 ```bash
 SCOUT_GATEWAY=https://scout-gateway.example.com npx scout-swe nodes
 ```
+
+Set `SCOUT_GATEWAY` to the deployment-specific control-plane origin.
 
 ## Layout
 

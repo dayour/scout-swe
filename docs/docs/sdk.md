@@ -9,7 +9,11 @@ Typed TypeScript client for the Scout API.
 
 ```ts
 import { ScoutClient } from "@scout-swe/sdk";
-const scout = new ScoutClient({ baseUrl: "https://scout-gateway.example.com" });
+
+const gateway = process.env.SCOUT_GATEWAY;
+if (!gateway) throw new Error("SCOUT_GATEWAY is required");
+
+const scout = new ScoutClient({ baseUrl: gateway });
 ```
 
 ## Methods
